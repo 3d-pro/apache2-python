@@ -25,8 +25,6 @@ RUN echo 'Acquire::http::Proxy "http://172.17.0.1:3142";' > /etc/apt/apt.conf.d/
 
 ENV ALLOW_OVERRIDE **False**
 
-VOLUME ["/home/web","/var/log"]
-
 EXPOSE 80 443
 WORKDIR /home/web
 CMD ["/start.sh"]
