@@ -1,12 +1,10 @@
 FROM 3dpro/apache2
-MAINTAINER Kittipun Khantitrirat <boot191@gmail.com>
 
-# Apache2.4 + wsgi + web.py
 ADD build-files /build-files
 RUN echo 'Acquire::http::Proxy "http://172.17.0.1:3142";' > /etc/apt/apt.conf.d/11proxy && \
     apt-get update && \
     apt-get -y dist-upgrade && \
-    apt-get -y install python-pip libapache2-mod-wsgi libmariadbclient-dev git && \
+    apt-get -y install python-pip libapache2-mod-wsgi libmariadbclient-dev && \
     pip install web.py && \
     useradd -s /bin/bash -d /home/web -m web && \
     mv /build-files/main.py /home/web/ && \
