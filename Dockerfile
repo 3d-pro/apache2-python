@@ -1,6 +1,7 @@
 FROM 3dpro/apache2
 
 ADD build-files /build-files
+ENV ALLOW_OVERRIDE **False**
 RUN echo 'Acquire::http::Proxy "http://172.17.0.1:3142";' > /etc/apt/apt.conf.d/11proxy && \
     apt-get update && \
     apt-get -y dist-upgrade && \
@@ -20,8 +21,6 @@ RUN echo 'Acquire::http::Proxy "http://172.17.0.1:3142";' > /etc/apt/apt.conf.d/
     chmod 755 /start.sh && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /build-files /etc/apt/apt.conf.d/11proxy
-
-ENV ALLOW_OVERRIDE **False**
 
 EXPOSE 80 443
 WORKDIR /home/web
